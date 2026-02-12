@@ -1,15 +1,16 @@
 package com.joaovitor.workshopmongo.controller;
 
-import com.joaovitor.workshopmongo.Service.UserService;
+import com.joaovitor.workshopmongo.service.UserService;
 import com.joaovitor.workshopmongo.domain.User;
 import com.joaovitor.workshopmongo.dto.UserDTO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,4 +33,11 @@ public class UserController {
 
         return ResponseEntity.ok().body(listDto);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> findById(@PathVariable String id){
+        User user = userService.findById(id);
+        return ResponseEntity.ok(user);
+    }
+
 }
