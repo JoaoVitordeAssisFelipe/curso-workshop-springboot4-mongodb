@@ -1,5 +1,6 @@
 package com.joaovitor.workshopmongo.controller;
 
+import com.joaovitor.workshopmongo.Service.UserService;
 import com.joaovitor.workshopmongo.domain.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +14,15 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @RequestMapping
     public ResponseEntity<List<User>> findAll(){
-        User maria = new User("1","Maria Brown","Maria@hotmail.com");
-        User alex = new User("2","Alex Green","alex@hotmail.com");
-        List<User> list = new ArrayList<>(Arrays.asList(maria, alex));
+        List<User> list = userService.findAll();
         return ResponseEntity.ok().body(list);
     }
 }
