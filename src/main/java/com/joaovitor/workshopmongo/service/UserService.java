@@ -2,6 +2,7 @@ package com.joaovitor.workshopmongo.service;
 
 import com.joaovitor.workshopmongo.Repository.UserRepository;
 import com.joaovitor.workshopmongo.domain.User;
+import com.joaovitor.workshopmongo.dto.UserDTO;
 import com.joaovitor.workshopmongo.service.exception.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +26,11 @@ public class UserService {
                 .orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
 
+    public User insert(User obj){
+        return userRepository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto){
+        return new User(objDto.id(),objDto.name(),objDto.email());
+    }
 }
