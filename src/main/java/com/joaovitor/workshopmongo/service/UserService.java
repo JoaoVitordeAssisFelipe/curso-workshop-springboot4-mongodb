@@ -38,4 +38,20 @@ public class UserService {
     public User fromDTO(UserDTO objDto){
         return new User(objDto.id(),objDto.name(),objDto.email());
     }
+
+    public User update(String id, User obj) {
+
+        User entity = userRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado"));
+
+        updateData(entity, obj);
+
+        return userRepository.save(entity);
+    }
+
+    private void updateData(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+    }
+
 }
