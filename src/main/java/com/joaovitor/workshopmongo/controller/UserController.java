@@ -1,5 +1,6 @@
 package com.joaovitor.workshopmongo.controller;
 
+import com.joaovitor.workshopmongo.domain.Post;
 import com.joaovitor.workshopmongo.service.UserService;
 import com.joaovitor.workshopmongo.domain.User;
 import com.joaovitor.workshopmongo.dto.UserDTO;
@@ -59,4 +60,9 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
+    }
 }
