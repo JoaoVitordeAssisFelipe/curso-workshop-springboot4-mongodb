@@ -1,5 +1,6 @@
 package com.joaovitor.workshopmongo.controller;
 
+import com.joaovitor.workshopmongo.controller.util.URL;
 import com.joaovitor.workshopmongo.domain.Post;
 import com.joaovitor.workshopmongo.domain.User;
 import com.joaovitor.workshopmongo.dto.UserDTO;
@@ -27,5 +28,12 @@ public class PostController {
     public ResponseEntity<Post> findById(@PathVariable String id){
         Post post = postService.findById(id);
         return ResponseEntity.ok().body(post);
+    }
+
+    @GetMapping("/titlesearch")
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = " ") String text){
+        text = URL.decodeParam(text);
+        List<Post> list = postService.findByTitle(text);
+        return ResponseEntity.ok().body(list);
     }
 }
