@@ -8,6 +8,8 @@ import com.joaovitor.workshopmongo.dto.UserDTO;
 import com.joaovitor.workshopmongo.service.exception.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,5 +27,10 @@ public class PostService {
 
     public List<Post> findByTitle(String text){
         return postRepository.searchTitle(text);
+    }
+
+    public List<Post> fullSearch(String text, Date minDate, Date maxDate){
+        maxDate = new Date(maxDate.getTime()+ 24*60*60*100);
+        return postRepository.fullSearch(text,minDate,maxDate);
     }
 }
