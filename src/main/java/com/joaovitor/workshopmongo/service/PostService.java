@@ -1,14 +1,10 @@
 package com.joaovitor.workshopmongo.service;
 
 import com.joaovitor.workshopmongo.Repository.PostRepository;
-import com.joaovitor.workshopmongo.Repository.UserRepository;
 import com.joaovitor.workshopmongo.domain.Post;
-import com.joaovitor.workshopmongo.domain.User;
-import com.joaovitor.workshopmongo.dto.UserDTO;
 import com.joaovitor.workshopmongo.service.exception.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
 
